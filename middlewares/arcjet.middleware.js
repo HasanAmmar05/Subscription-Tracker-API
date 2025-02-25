@@ -2,19 +2,11 @@ import aj from '../config/arcjet.js';
 
 const arcjetMiddleware = async (req, res, next) => {
   try {
-    const details = {
-      ip: req.ip || req.connection.remoteAddress || '127.0.0.1', // Fallback to local IP for development
-      method: req.method,
-      path: req.path,
-      headers: req.headers,
-      requested: 1, // Number of tokens requested for rate limiting
-    };
+    const decision = await aj.protect(req, { requested: 1 });
 
-    const decision = await aj.protect(details);
-
-    if (decision.isDenied()) {
-      if (decision.reason.isRateLimit()) return res.status(429).json({ error: 'Rate limit exceeded' });
-      if (decision.reason.isBot()) return res.status(403).json({ error: 'Bot detected' });
+    if(decision.isDenied()) {
+      if(decision.reason.isRateLimit()) return res.status(429).json({ error: 'Rate limit exceeded' });
+      if(decision.reason.isBot()) return res.status(403).json({ error: 'Bot detected' });
 
       return res.status(403).json({ error: 'Access denied' });
     }
@@ -24,6 +16,6 @@ const arcjetMiddleware = async (req, res, next) => {
     console.log(`Arcjet Middleware Error: ${error}`);
     next(error);
   }
-};
+}
 
 export default arcjetMiddleware;
