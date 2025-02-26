@@ -3,7 +3,7 @@ import { Router } from "express";
 import authorize from "../middlewares/auth.middleware.js";
 import { createSubscription, getUserSubscriptions } from "../controllers/subscription.controller.js";
 import arcjetMiddleware from "../middlewares/arcjet.middleware.js";
-import aj from "../config/arcjet.js";
+// import { sendReminderEmail } from '../utils/send-email.js';
 
 const router = Router();
 
@@ -36,5 +36,22 @@ subscriptionRouter.put("/:id/cancel", (req, res) =>
 );
 
 subscriptionRouter.get('/user/:id', authorize, getUserSubscriptions);
+
+// Add a test endpoint to send an email
+subscriptionRouter.post('/test-email', authorize, async (req, res, next) => {
+  try {
+    await sendReminderEmail({
+      to: 'test@example.com', // Replace with a test email
+      type: 'Test Reminder',
+      subscription: {
+        name: 'Test Subscription',
+        renewalDate: new Date().toISOString(),
+      },
+    });
+    res.status(200).json({ success: true, message: 'Test email sent' });
+  } catch (e) {
+    next(e);
+  }
+});
 
 export default subscriptionRouter;

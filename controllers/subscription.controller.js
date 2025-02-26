@@ -1,6 +1,4 @@
 import Subscription from "../models/subscription.model.js";
-import { workflowClient } from '../config/upstash.js';
-import { SERVER_URL } from '../config/env.js';
 
 export const createSubscription = async (req, res, next) => {
   try {
@@ -9,30 +7,17 @@ export const createSubscription = async (req, res, next) => {
       user: req.user._id,
     });
 
-    try {
-      const { workflowRunId } = await workflowClient.trigger({
-        url: `${SERVER_URL}/api/v1/workflows/subscription/reminder`,
-        body: { subscriptionId: subscription._id },
-        headers: { 'content-type': 'application/json' },
-        retries: 0,
-      });
+    /*
+    const { workflowRunId } = await workflowClient.trigger({
+      url: `${SERVER_URL}/api/v1/workflows/subscription/reminder`,
+      body: { subscriptionId: subscription._id },
+      headers: { 'content-type': 'application/json' },
+      retries: 0,
+    });
 
-      res.status(201).json({ success: true, data: { subscription, workflowRunId } });
-    } catch (error) {
-      if (error.status === 401) {
-        console.error('Authentication failed with Upstash. Please check your QSTASH_TOKEN.');
-        res.status(201).json({ success: true, data: { subscription }, warning: 'Workflow trigger failed due to authentication error' });
-      } else if (error.status === 404) {
-        console.error('Workflow URL not found:', error);
-        res.status(201).json({ success: true, data: { subscription }, warning: 'Workflow trigger failed due to URL not found' });
-      } else if (error.message.includes('Failed to infer request path')) {
-        console.error('Workflow URL parsing error:', error);
-        res.status(201).json({ success: true, data: { subscription }, warning: 'Workflow trigger failed due to URL parsing error' });
-      } else {
-        console.error('Unexpected workflow error:', error);
-        throw error;
-      }
-    }
+    res.status(201).json({ success: true, data: { subscription, workflowRunId } });
+    */
+    res.status(201).json({ success: true, data: { subscription } });
   } catch (e) {
     next(e);
   }
