@@ -3,7 +3,7 @@ import { ARCJET_KEY } from './env.js';
 
 const aj = arcjet({
   key: ARCJET_KEY,
-  characteristics: ['ip.src', 'user-agent'], // Use "ip" for simplicity
+  characteristics: ['ip.src', 'user-agent'],
   rules: [
     shield({ mode: "LIVE" }),
     detectBot({
@@ -12,9 +12,9 @@ const aj = arcjet({
     }),
     tokenBucket({
       mode: "LIVE",
-      refillRate: 5, // Refill 5 tokens per interval
-      interval: 10, // Refill every 10 seconds
-      capacity: 10, // Bucket capacity of 10 tokens
+      refillRate: 2,
+      interval: 5,
+      capacity: 5,
     }),
   ],
 });
