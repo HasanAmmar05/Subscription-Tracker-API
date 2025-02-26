@@ -94,7 +94,7 @@ Open [http://localhost:5500](http://localhost:5500) in your browser or any HTTP 
 
 ```json
 {
-  "name": "Javascript Mastery Elite Membership",
+  "name": "GYM Subscription",
   "price": 139.00,
   "currency": "USD",
   "frequency": "monthly",
