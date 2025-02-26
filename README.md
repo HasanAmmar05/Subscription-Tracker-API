@@ -36,6 +36,7 @@ Ensure you have the following installed:
 ```bash
 git clone https://github.com/your-username/subscription-tracker-project.git
 cd subscription-tracker-project
+```
 
 
 
