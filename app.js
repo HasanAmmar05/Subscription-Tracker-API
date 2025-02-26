@@ -17,7 +17,7 @@ import connectToDatabase from "./database/mongodb.js";
 import errorMiddleware from "./middlewares/error.middleware.js";
 import arcjetMiddleware from "./middlewares/arcjet.middleware.js";
 import workflowRouter from "./routes/workflow.routes.js";
-import { sendReminders } from './controllers/workflow.controller.js'; // Matches your file structure
+import { sendReminders } from './controllers/workflow.controller.js'; 
 
 const app = express();
 
