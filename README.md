@@ -1,7 +1,7 @@
 # Subscription Tracker API
 
 ## Overview
-Welcome to the Subscription Tracker API, a robust Node.js backend application designed to manage user subscriptions efficiently. Built with modern tools like Express.js and MongoDB, this API handles user authentication, subscription management, and optional features like rate limiting and reminders. This project is ideal for developers looking to build or learn about secure, scalable API systems for subscription tracking.
+This project is a RESTful API for managing subscription services. It allows users to create accounts, track their various subscriptions (like streaming services, news sites, etc.), and receive reminders before renewal dates. The API includes authentication, subscription management, and integrates with Arcjet for rate limiting and bot protection.
 
 ## Tech Stack
 - **Node.js**: Powers the server runtime
