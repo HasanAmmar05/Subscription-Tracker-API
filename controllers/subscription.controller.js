@@ -14,6 +14,7 @@ export const createSubscription = async (req, res, next) => {
       headers: { 'content-type': 'application/json' },
       retries: 0,
     });
+    
 
     res.status(201).json({ success: true, data: { subscription, workflowRunId } });
     */
@@ -26,7 +27,7 @@ export const createSubscription = async (req, res, next) => {
 export const getUserSubscriptions = async (req, res, next) => {
   try {
     if (req.user.id !== req.params.id) {
-      const error = new Error('You are not the owner of this account');
+      const error = new Error("You are not the owner of this account");
       error.status = 401;
       throw error;
     }
