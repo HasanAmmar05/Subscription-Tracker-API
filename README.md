@@ -1,7 +1,7 @@
 # Subscription Tracker API
 
 ## Overview
-This project is a RESTful API for managing subscription services. It allows users to create accounts, track their various subscriptions (like streaming services, news sites, etc.), and receive reminders before renewal dates. The API includes authentication, subscription management, and integrates with Arcjet for rate limiting and bot protection.
+This project is a RESTful API for managing subscription services. It allows users to create accounts, track their various subscriptions (like streaming services, news sites, etc.), and receive reminders before renewal dates. The API includes authentication, subscription management, and integrates with Arcjet for rate limiting and bot protection
 
 ## Tech Stack
 - **Node.js**: Powers the server runtime
